@@ -40,7 +40,7 @@ How Sidebar Manager Light works:
 Follow on [Twitter](http://twitter.com/OTWthemes) |
 [Facebook](http://www.facebook.com/pages/OTWthemes/250294028325665) |
 [YouTube](http://www.youtube.com/OTWthemes) |
-[Google + (]https://plus.google.com/117222060323479158835/about)
+[Google +] (https://plus.google.com/117222060323479158835/about)
 
 
 == Installation ==
