@@ -12,7 +12,7 @@ Create custom sidebars (widget areas) and replace any existing sidebar so you ca
 
 == Description ==
 
-You can now replace an existing sidebar (widget area) with a custom sidebar for one or group of pages. The content of the new sidebar will be displayed on the exact same spot as the one you select to replace only for those pages you selected from a list of pages.
+You can now replace an existing sidebar (widget area) with a custom sidebar for one or group of pages. The content of the new sidebar will be displayed on the exact same spot as the one you select to replace only for those pages you selected.
 
 Once created all custom sidebars will be available in Appearance -> Widgets. You can drop any number of widgets in any of your custom sidebars. They work exacly the same way as the default once.
 
@@ -22,10 +22,12 @@ Upgrade to the full version of [Sidebar and Widget Manager](http://otwthemes.com
 [Demo site](http://otwthemes.com/demos/sidebar-widget-manager?utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) | 
 [Video overview](http://www.youtube.com/watch?v=WT9UK1eX4C8)
 
-Examples
+Examples:
 
-Lets say you would like to display a certain set of widgets on your blog page, different set of widgets on your portfolio, and different set on your contact page. All that on the spot where the primary sidebar of your theme is located. You can do that by creating 3 sidebars replacing the primary sidebar and set each custom sidebar to display on blog, portfolio, contacts.
+Lets say you would like to display a certain set of widgets on your blog page, different set of widgets on your portfolio, and different set on your contact page. All that on the spot where the primary sidebar of your theme is located. You can do that by creating 3 sidebars replacing the primary sidebar and set each custom sidebar to display on blog or portfolio or contacts.
+
 If you have an advanced theme that has some extra widget areas you can replace those as well. Practically any sidebar (widget area) can be replaced.
+
 This is very easy and fun to do and requires no coding knowledge at all.
 
 How Sidebar Manager Light works:
