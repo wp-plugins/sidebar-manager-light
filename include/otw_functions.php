@@ -21,6 +21,8 @@ if( !function_exists( 'is_active_sidebar' ) ){
   */
 function otw_sml_plugin_init(){
 	
+	global $otw_plugin_url;
+	
 	global $wp_registered_sidebars, $otw_replaced_sidebars, $wp_int_items;
 	
 	if( is_admin() ){
@@ -103,8 +105,7 @@ function otw_sml_plugin_init(){
 	if( is_admin() ){
 		require_once( plugin_dir_path( __FILE__ ).'/otw_process_actions.php' );
 	}else{
-		
-		wp_register_style('otw_sbm.css', plugins_url( 'otw_sml/css/otw_sbm.css' ) );
+		wp_register_style('otw_sbm.css', $otw_plugin_url.'/css/otw_sbm.css'  );
 		wp_enqueue_style('otw_sbm.css');
 	}
 }
