@@ -21,6 +21,7 @@ Add as many sidebars (widget areas) as you need. Creating sidebars (widget areas
 Upgrade to the full version of [Sidebar and Widget Manager](http://otwthemes.com/product/sidebar-widget-manager-for-wordpress/?utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) |
 [Demo site](http://otwthemes.com/demos/sidebar-widget-manager?utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) | 
 [Video overview](http://www.youtube.com/watch?v=WT9UK1eX4C8)
+Sidebar and Widget Manager has easy column interface for Widgetizing Pages - [Video](http://otwthemes.com/demos/sidebar-widget-manager/#v_widgetize) | [Screenshots](http://otwthemes.com/demos/sidebar-widget-manager/#s_widgetize)
 
 Examples:
 
