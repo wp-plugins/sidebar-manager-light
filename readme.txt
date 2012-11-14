@@ -19,7 +19,7 @@ Once created all custom sidebars will be available in Appearance -> Widgets. You
 Add as many sidebars (widget areas) as you need. Creating sidebars (widget areas) is unlimited. 
 
 Upgrade to the full version of [Sidebar and Widget Manager](http://otwthemes.com/product/sidebar-widget-manager-for-wordpress/?utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) |
-[Demo site](http://otwthemes.com/demos/sidebar-widget-manager?utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) | 
+[Demo site](http://otwthemes.com/demos/1ts/?item=Sidebar%20Widget%20Manager&utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) | 
 [Video overview](http://www.youtube.com/watch?v=WT9UK1eX4C8)
 Sidebar and Widget Manager has easy column [interface for Widgetizing Pages](http://otwthemes.com/widgetizing-pages-in-wordpress-has-never-been-easier/?utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml)
 
