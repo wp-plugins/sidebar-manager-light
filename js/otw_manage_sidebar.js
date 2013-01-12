@@ -9,7 +9,7 @@ function init_manage_page(){
 	} );
 	
 	jQuery('#col-right').find('.sitem_toggle').click(function() {
-		jQuery(this).parent().find( '.inside').toggleClass('closed');
+		jQuery(this).parent().find( '.inside').toggleClass('otw_closed');
 	});
 	
 };

@@ -5,7 +5,7 @@ Plugin Name: Sidebar Manager Light
 Plugin URI: http://otwthemes.com/?utm_source=wp.org&utm_medium=admin&utm_content=site&utm_campaign=sml
 Description:  Create custom sidebars (widget areas) and replace any existing sidebar so you can display relevant content on different pages.
 Author: OTWthemes.com
-Version: 1.2
+Version: 1.3
 Author URI: http://otwthemes.com/?utm_source=wp.org&utm_medium=admin&utm_content=site&utm_campaign=sml
 */
 $wp_int_items = array(
@@ -18,7 +18,6 @@ $otw_plugin_options = get_option( 'otw_plugin_options' );
 
 $otw_sml_plugin_url = plugins_url( substr( dirname( __FILE__ ), strlen( dirname( dirname( __FILE__ ) ) ) ) );
 
-include_once( plugin_dir_path( __FILE__ ).'/include/otw_plugin_activation.php' );
 require_once( plugin_dir_path( __FILE__ ).'/include/otw_functions.php' );
 
 /** calls list of available sidebars
@@ -96,6 +95,7 @@ function enqueue_sml_styles( $requested_page ){
  */
 add_action('admin_menu', 'otw_sml_admin_actions');
 add_action('admin_notices', 'otw_sml_admin_notice');
+add_filter('sidebars_widgets', 'otw_sidebars_widgets');
 
 /**
  * include plugin js and css.
@@ -107,9 +107,4 @@ add_action('admin_print_styles', 'enqueue_sml_styles' );
  *call init plugin function
  */
 add_action('init', 'otw_sml_plugin_init', 100 );
-
-include_once( plugin_dir_path( __FILE__ ).'/include/otw_plugin_activation.php' );
-
-register_activation_hook(  __FILE__,'otw_sml_plugin_activate');
-register_deactivation_hook(  __FILE__,'otw_sml_plugin_deactivate');
 ?>

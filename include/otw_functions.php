@@ -1,33 +1,10 @@
 <?php
-/** list of functions used by otw sidebar
-  *
-  */
-if( !function_exists( 'dynamic_sidebar' ) ){
-	function dynamic_sidebar( $index ){
-		return otw_dynamic_sidebar( $index );
-	}
-}else{
-	otw_sml_plugin_activate();
-}
-if( !function_exists( 'is_active_sidebar' ) ){
-	function is_active_sidebar( $index ){
-		return otw_is_active_sidebar( $index );
-	}
-}else{
-	otw_sml_plugin_activate();
-}
 /** init plugin
   *
   */
 function otw_sml_plugin_init(){
 	
 	global $wp_registered_sidebars, $otw_replaced_sidebars, $wp_int_items, $otw_sml_plugin_url;
-	
-	if( is_admin() ){
-		if( function_exists( 'otwrem_dynamic_sidebar' ) ){
-			update_option( 'otw_sml_plugin_error', '' );
-		}
-	}
 	
 	$otw_registered_sidebars = get_option( 'otw_sidebars' );
 	$otw_widget_settings = get_option( 'otw_widget_settings' );

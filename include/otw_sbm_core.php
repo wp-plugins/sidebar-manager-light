@@ -1,39 +1,51 @@
 <?php
-/** check if sidebar is active
-  * @param string
-  * @return string
-  */
-if( !function_exists( 'otw_is_active_sidebar' ) ){
-	function otw_is_active_sidebar( $index ){
+if( !function_exists( 'otw_sbm_index' ) ){
+	function otw_sbm_index( $index, $sidebars_widgets ){
 		
-		global $wp_registered_sidebars;
+		global $wp_registered_sidebars, $otw_replaced_sidebars;
 		
-		$index = ( is_int($index) ) ? "sidebar-$index" : sanitize_title($index);
+		if( isset( $otw_replaced_sidebars[ $index ] ) ){//we have set replacemend.
 		
-		$index = otw_sidebar_index( $index );
-		
-		if( isset( $wp_registered_sidebars[ $index ] ) ){
-		
-			if( !array_key_exists( 'status', $wp_registered_sidebars[ $index ] ) || ( $wp_registered_sidebars[ $index ]['status'] == 'active' ) ){
+			$requested_objects = otw_get_current_object();
 			
-				$sidebars_widgets = wp_get_sidebars_widgets();
+			//check if the new sidebar is valid for the current requested resource
+			foreach( $otw_replaced_sidebars[ $index ] as $repl_sidebar ){
 				
-				if ( !empty($sidebars_widgets[$index]) ){
+				if( isset( $wp_registered_sidebars[ $repl_sidebar ] ) ){
 					
-					$sidebars_widgets[$index] = otw_filter_siderbar_widgets( $index, $sidebars_widgets );
-					
-					if( count( $sidebars_widgets[$index] ) ){
-						return true;
+					if( $wp_registered_sidebars[ $repl_sidebar ]['status'] == 'active'  ){
+						
+						foreach( $requested_objects as $objects ){
+						
+							list( $object, $object_id ) = $objects;
+						
+							if( $object && $object_id ){
+								
+								$tmp_index = otw_validate_sidebar_index( $repl_sidebar, $object, $object_id );
+								
+								if( $tmp_index ){
+									if ( !empty($sidebars_widgets[$tmp_index]) ){
+										$sidebars_widgets[$tmp_index] = otw_filter_siderbar_widgets( $tmp_index, $sidebars_widgets );
+										
+										if( count( $sidebars_widgets[$tmp_index] ) ){
+											$index = $tmp_index;
+											break 2;
+										}
+									}
+								}
+								
+							}//end hs object and object id
+							
+						}//end loop requested objects
+						
 					}
 				}
 			}
-			
 		}
 		
-		return false;
-	} 
+		return $index;
+	}
 }
-
 
 /** check if given sidebar is valid for the given object and object_id without checing the widgets
   *  @param string
@@ -608,6 +620,35 @@ if( !function_exists( 'otw_wp_item_attribute' ) ){
 					}
 				break;
 		}
+	}
+}
+
+if( !function_exists( 'otw_sidebars_widgets' ) ){
+	function otw_sidebars_widgets( $sidebars_widgets ){
+		
+		global $otw_registered_sidebars, $otw_replaced_sidebars;
+		
+		if( !is_array( $otw_replaced_sidebars ) || !count( $otw_replaced_sidebars ) ){
+		//	return $sidebars_widgets;
+		}
+		
+		if( is_admin() ){
+			return $sidebars_widgets;
+		}
+		
+		foreach( $sidebars_widgets as $index => $widgets ){
+			
+			
+			$tmp_index = otw_sbm_index( $index, $sidebars_widgets );
+			
+			if ( !empty($sidebars_widgets[$tmp_index]) ){
+				$sidebars_widgets[$index] = otw_filter_siderbar_widgets( $tmp_index, $sidebars_widgets );
+			}else{
+				$sidebars_widgets[$index] = $sidebars_widgets[$tmp_index];
+			}
+			
+		}
+		return $sidebars_widgets;
 	}
 }
 ?>
