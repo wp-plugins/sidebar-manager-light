@@ -12,6 +12,8 @@ Create custom sidebars (widget areas) and replace any existing sidebar so you ca
 
 == Description ==
 
+Updating to version 1.3 - See the Change log tab.
+
 You can now replace an existing sidebar (widget area) with a custom sidebar for one or group of pages. The content of the new sidebar will be displayed on the exact same spot as the one you select to replace only for those pages you selected.
 
 Once created all custom sidebars will be available in Appearance -> Widgets. You can drop any number of widgets in any of your custom sidebars. They work exacly the same way as the default once.
@@ -61,7 +63,7 @@ Please refer to [online documentation page](http://otwthemes.com/online-document
 
 = 1.3 =
 
-Manually updating to versiion 1.3. requires deactivation of the old version first. If you are using the wordpress updater it will do all the job for you.
+Updating to versiion 1.3. requires deactivation of the old version first! More info [here](http://otwthemes.com/updating-widgetize-pages-light-to-1-5-version-sidebar-manager-light-to-1-3-widget-manager-light-to-1-3/)  
 
 * Updated: Activation method and replacement functionality
 
