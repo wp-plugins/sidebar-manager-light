@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: replace sidebar, replace widget area, custom sidebar, custom widget area widgets, sidebar, widget area, custom layout, relevant content, dynamic sidebars
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Create custom sidebars (widget areas) and replace any existing sidebar so you ca
 
 == Description ==
 
-Updating to version 1.3 - See the Change log tab.
+Updating to version 1.3 or higher - See the Change log tab.
 
 You can now replace an existing sidebar (widget area) with a custom sidebar for one or group of pages. The content of the new sidebar will be displayed on the exact same spot as the one you select to replace only for those pages you selected.
 
@@ -61,9 +61,18 @@ Please refer to [online documentation page](http://otwthemes.com/online-document
 
 == Changelog ==
 
+= 1.4 =
+
+Updating to versiion 1.3 or higher requires deactivation of the old version first! More info [here](http://otwthemes.com/updating-widgetize-pages-light-to-1-5-version-sidebar-manager-light-to-1-3-widget-manager-light-to-1-3/)  
+
+* Added: WPML plugin filter
+* Added: User role filter 
+* Fixed: typing mistake 
+* Updated: Better compatibility on a single WP installation for Widgetize Pages Light, Sidebar Manager Light, Widget Manager Light, Sidebar Widget Manager full version
+
 = 1.3 =
 
-Updating to versiion 1.3. requires deactivation of the old version first! More info [here](http://otwthemes.com/updating-widgetize-pages-light-to-1-5-version-sidebar-manager-light-to-1-3-widget-manager-light-to-1-3/)  
+Updating to versiion 1.3 or higher requires deactivation of the old version first! More info [here](http://otwthemes.com/updating-widgetize-pages-light-to-1-5-version-sidebar-manager-light-to-1-3-widget-manager-light-to-1-3/)  
 
 * Updated: Activation method and replacement functionality
 

@@ -54,7 +54,7 @@ if( isset( $_POST['otw_sml_action'] ) ){
 				}
 			break;
 		case 'manage_otw_sidebar':
-				global $validate_messages, $wp_int_items;
+				global $validate_messages, $wp_sml_int_items;
 				$validate_messages = array();
 				$valid_page = true;
 				if( !isset( $_POST['sbm_title'] ) || !strlen( trim( $_POST['sbm_title'] ) ) ){
@@ -89,7 +89,7 @@ if( isset( $_POST['otw_sml_action'] ) ){
 					$sidebar['widget_alignment'] = 'vertical';
 					
 					//save selected items
-					$otw_sbi_items = array_keys( $wp_int_items );
+					$otw_sbi_items = array_keys( $wp_sml_int_items );
 					
 					foreach( $otw_sbi_items as $otw_sbi_item ){
 						

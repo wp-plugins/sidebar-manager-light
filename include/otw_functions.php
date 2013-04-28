@@ -4,7 +4,7 @@
   */
 function otw_sml_plugin_init(){
 	
-	global $wp_registered_sidebars, $otw_replaced_sidebars, $wp_int_items, $otw_sml_plugin_url;
+	global $wp_registered_sidebars, $otw_replaced_sidebars, $wp_sml_int_items, $otw_sml_plugin_url;
 	
 	$otw_registered_sidebars = get_option( 'otw_sidebars' );
 	$otw_widget_settings = get_option( 'otw_widget_settings' );
@@ -13,6 +13,8 @@ function otw_sml_plugin_init(){
 		$otw_widget_settings = array();
 		update_option( 'otw_widget_settings', $otw_widget_settings );
 	}
+	
+	otw_sml_sidebar_add_items();
 	
 	if( is_array( $otw_registered_sidebars ) && count( $otw_registered_sidebars ) ){
 		
@@ -85,7 +87,6 @@ function otw_sml_plugin_init(){
 	}
 }
 
-
 function otw_sml_admin_notice(){
 	$plugin_error = get_option( 'otw_sml_plugin_error' );
 	
@@ -95,5 +96,24 @@ function otw_sml_admin_notice(){
 		echo '</p></div>';
 	}
 }
+
+/**
+ * Add more items based on installed plugins etc.
+ */
+function otw_sml_sidebar_add_items(){
+	
+	global $wp_sml_int_items;
+	
+	//wpml
+	$active_plugins = get_settings( 'active_plugins' );
+	
+	if( in_array( 'sitepress-multilingual-cms/sitepress.php', $active_plugins ) && function_exists( 'icl_get_languages' ) ){
+		$wp_sml_int_items['wpmllanguages'] = array();
+		$wp_sml_int_items['wpmllanguages'][0] = array();
+		$wp_sml_int_items['wpmllanguages'][1] = __( 'WPML plugin language', 'otw_sbm' );
+		$wp_sml_int_items['wpmllanguages'][2] = __( 'All WPML plugin languages', 'otw_sbm' );
+	}
+}
+
 require_once( plugin_dir_path( __FILE__ ).'otw_sbm_core.php' );
 ?>
