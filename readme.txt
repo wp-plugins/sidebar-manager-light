@@ -3,7 +3,7 @@ Contributors: OTWthemes
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQH6CMTR42KS2
 Tags: replace sidebar, replace widget area, custom sidebar, custom widget area widgets, sidebar, widget area, custom layout, relevant content, dynamic sidebars
 Requires at least: 3.0
-Tested up to: 3.5
+Tested up to: 3.5.1
 Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -19,6 +19,10 @@ You can now replace an existing sidebar (widget area) with a custom sidebar for 
 Once created all custom sidebars will be available in Appearance -> Widgets. You can drop any number of widgets in any of your custom sidebars. They work exacly the same way as the default once.
 
 Add as many sidebars (widget areas) as you need. Creating sidebars (widget areas) is unlimited. 
+
+WMPL plugin support so you can display sidebars and widgets based on language.
+
+Sidebars can be displayed based on User role too.
 
 Upgrade to the full version of [Sidebar and Widget Manager](http://otwthemes.com/product/sidebar-widget-manager-for-wordpress/?utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) |
 [Demo site](http://otwthemes.com/demos/1ts/?item=Sidebar%20Widget%20Manager&utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) | 
