@@ -568,7 +568,7 @@ if( !function_exists( 'otw_get_wp_items' ) ){
 			case 'wpmllanguages':
 					if( function_exists( 'icl_get_languages' ) ){
 						
-						$wpml_languages = icl_get_languages( 'skip_missing=1' );
+						$wpml_languages = icl_get_languages( 'skip_missing=0' );
 						
 						$all_items = count( $wpml_languages );
 						
@@ -723,7 +723,9 @@ if( !function_exists( 'otw_get_strict_filters' ) ){
 		$filters = array();
 		
 		//apply user roles
-		get_currentuserinfo();
+		if ( function_exists('get_currentuserinfo') ){
+			get_currentuserinfo();
+		}
 		
 		if( isset( $current_user->ID ) && intval( $current_user->ID ) && isset( $current_user->roles ) && is_array( $current_user->roles ) && count( $current_user->roles ) ){
 			
