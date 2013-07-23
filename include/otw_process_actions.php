@@ -55,6 +55,9 @@ if( isset( $_POST['otw_sml_action'] ) ){
 			break;
 		case 'manage_otw_sidebar':
 				global $validate_messages, $wp_sml_int_items;
+				
+				$otw_widget_settings = get_option( 'otw_widget_settings' );
+				
 				$validate_messages = array();
 				$valid_page = true;
 				if( !isset( $_POST['sbm_title'] ) || !strlen( trim( $_POST['sbm_title'] ) ) ){
@@ -93,22 +96,19 @@ if( isset( $_POST['otw_sml_action'] ) ){
 					
 					foreach( $otw_sbi_items as $otw_sbi_item ){
 						
-						if( isset( $_POST['otw_sbi_'.$otw_sbi_item ] ) && is_array( $_POST['otw_sbi_'.$otw_sbi_item ] ) ){
+						if( isset( $items_to_remove[ $otw_sbi_item ] ) ){
+							unset( $items_to_remove[ $otw_sbi_item ] );
+						}
+						
+						if( isset( $_POST['otw_smb_'.$otw_sbi_item.'_validfor'] ) && strlen( trim( $_POST['otw_smb_'.$otw_sbi_item.'_validfor'] ) ) ){
 							
-							if( !isset( $sidebar['validfor'][ $otw_sbi_item ] ) ){
+							$sidebar['validfor'][ $otw_sbi_item ] = array();
 							
-								$sidebar['validfor'][ $otw_sbi_item ] = array();
-							}
+							$posted_items = explode( ',', $_POST['otw_smb_'.$otw_sbi_item.'_validfor'] );
 							
-							foreach( $_POST['otw_sbi_'.$otw_sbi_item ] as $item_id ){
-								
-								if( !isset( $sidebar['validfor'][ $otw_sbi_item ][ $item_id ] ) ){
-									$sidebar['validfor'][ $otw_sbi_item ][ $item_id ] = array();
-									$sidebar['validfor'][ $otw_sbi_item ][ $item_id ]['id'] = $item_id;
-								}else{
-									unset( $items_to_remove[ $otw_sbi_item ][ $item_id ] );
-								}
-								
+							foreach( $posted_items as $item_id ){
+								$sidebar['validfor'][ $otw_sbi_item ][ $item_id ] = array();
+								$sidebar['validfor'][ $otw_sbi_item ][ $item_id ]['id'] = $item_id;
 							}
 							
 						}else{
@@ -118,7 +118,7 @@ if( isset( $_POST['otw_sml_action'] ) ){
 					
 					//remove any not selected items
 					if( is_array( $items_to_remove ) && count( $items_to_remove ) ){
-						
+					
 						foreach( $items_to_remove as $item_type => $item_data ){
 							
 							foreach( $item_data as $item_id => $item_info ){

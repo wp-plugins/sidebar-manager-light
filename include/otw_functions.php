@@ -115,5 +115,89 @@ function otw_sml_sidebar_add_items(){
 	}
 }
 
+/** set html ot each item row
+  *  @param string 
+  *  @param string 
+  *  @param string
+  *  @param array
+  *  @return void
+  */
+if (!function_exists( "otw_sml_sidebar_item_attributes" )){
+	function otw_sml_sidebar_item_attributes( $tag, $item_type, $item_id, $sidebar_data, $item_data ){
+		
+		$attributes = '';
+		
+		switch( $tag ){
+			case 'p':
+					$attributes_array = array();
+					if( isset( $_POST['otw_action'] ) ){
+						if( isset( $_POST[ 'otw_sbi_'.$item_type ][ $item_id ] ) || isset( $_POST[ 'otw_sbi_'.$item_type ][ 'all' ] ) ){
+							$attributes_array['class'][] = 'sitem_selected';
+						}else{
+							$attributes_array['class'][] = 'sitem_notselected';
+						}
+					}else{
+						if( isset( $sidebar_data['sbm_validfor'][ $item_type ]['all'] ) ){
+							$attributes_array['class'][] = 'sitem_selected';
+						}elseif( isset( $sidebar_data['sbm_validfor'][ $item_type ][ $item_id ] ) ){
+							$attributes_array['class'][] = 'sitem_selected';
+						}else{
+							$attributes_array['class'][] = 'sitem_notselected';
+						}
+					}
+					if( isset( $attributes_array['class'] ) ){
+						$attributes .= ' class="'.implode( ' ', $attributes_array['class'] ).'"';
+					}
+				break;
+			case 'c':
+					if( isset( $_POST['otw_action'] ) ){
+						if( isset( $_POST[ 'otw_sbi_'.$item_type ][ $item_id ] )  || isset( $_POST[ 'otw_sbi_'.$item_type ][ 'all' ] ) ){
+							$attributes .= ' checked="checked"';
+						}
+					}else{
+						if( isset( $sidebar_data['sbm_validfor'][ $item_type ]['all'] ) ){
+							$attributes .= ' checked="checked"';
+						}elseif( isset( $sidebar_data['sbm_validfor'][ $item_type ][ $item_id ] ) ){
+							$attributes .= ' checked="checked"';
+						}
+					}
+				break;
+			case 'ap':
+					if( isset( $_POST['otw_action'] ) ){
+						if( isset( $_POST[ 'otw_sbi_'.$item_type ][ $item_id ] ) ){
+							$attributes .= ' class="all sitem_selected"';
+						}else{
+							$attributes .= ' class="all sitem_notselected"';
+						}
+					}else{
+						if( isset( $sidebar_data['sbm_validfor'][ $item_type ][ $item_id ] ) ){
+							$attributes .= ' class="all sitem_selected"';
+						}else{
+							$attributes .= ' class="all sitem_notselected"';
+						}
+					}
+				break;
+			case 'ac':
+					if( isset( $_POST['otw_action'] ) ){
+						if( isset( $_POST[ 'otw_sbi_'.$item_type ][ $item_id ] ) ){
+							$attributes .= ' checked="checked"';
+						}
+					}else{
+						if( isset( $sidebar_data['sbm_validfor'][ $item_type ][ $item_id ] ) ){
+							$attributes .= ' checked="checked"';
+						}
+					}
+				break;
+			case 'l':
+					if( isset( $item_data->_sub_level ) && $item_data->_sub_level ){
+						$attributes .= ' style="margin-left: '.( $item_data->_sub_level * 20 ).'px"';
+					}
+				break;
+		}
+		echo $attributes;
+	}
+}
+
+
 require_once( plugin_dir_path( __FILE__ ).'otw_sbm_core.php' );
 ?>

@@ -16,7 +16,9 @@
 	$otw_sidebar_id = '';
 	
 	$page_title = __( 'Create New Sidebar' );
-
+	
+	$sbm_valid_for_values = array();
+	
 	if( isset( $_GET['sidebar'] ) ){
 		
 		$otw_sidebar_id = $_GET['sidebar'];
@@ -52,28 +54,30 @@
 			unset( $wp_sml_int_items[ $wp_item_type ] );
 		}
 	}
-
 	foreach( $wp_sml_int_items as $wp_item_type => $wp_item_data ){
-		
-		$wp_sml_int_items[ $wp_item_type ][0] = otw_get_wp_items( $wp_item_type );
-		
-		if( !$otw_sidebar_values['sbm_loaded'] && in_array( $wp_item_type, array( 'wpmllanguages', 'userroles' ) ) && !isset( $_POST['otw_sml_action'] ) ){
-		
-			if( !isset( $otw_sidebar_values['sbm_validfor'] ) ){
-				$otw_sidebar_values['sbm_validfor'] = array();
+	
+		if( isset( $otw_sidebar_values['sbm_validfor'][ $wp_item_type ] ) ){
+			$sbm_valid_for_values[ $wp_item_type ] = implode(',', array_keys( $otw_sidebar_values['sbm_validfor'][ $wp_item_type ] ) );
+		}elseif( !$otw_sidebar_values['sbm_loaded'] && in_array( $wp_item_type, array( 'wpmllanguages', 'userroles' ) ) ){
+			$db_full_items = otw_sml_get_filtered_items( $wp_item_type, '', 0, 0 );
+			$keys = array( 'all' );
+			if( isset( $db_full_items[1] ) && is_array( $db_full_items[1] ) ){
+				foreach( $db_full_items[1] as $db_full_wpItem ){
+					$key = otw_sml_wp_item_attribute( $wp_item_type, 'ID', $db_full_wpItem );
+					$keys[ $key ] = $key;
+				}
 			}
-			$otw_sidebar_values['sbm_validfor'][ $wp_item_type ] = array();
-			$otw_sidebar_values['sbm_validfor'][ $wp_item_type ]['all'] = array();
-			$otw_sidebar_values['sbm_validfor'][ $wp_item_type ]['all']['id'] = 'all';
-			
-			foreach( $wp_sml_int_items[ $wp_item_type ][0] as $type_info ){
-				
-				$key = otw_sml_wp_item_attribute( $wp_item_type, 'ID', $type_info );
-				$otw_sidebar_values['sbm_validfor'][ $wp_item_type ][ $key ] = array();
-				$otw_sidebar_values['sbm_validfor'][ $wp_item_type ][ $key ]['id'] = $key;
-			}
+			$sbm_valid_for_values[ $wp_item_type ] = implode( ",", $keys );
+		}else{
+			$sbm_valid_for_values[ $wp_item_type ] = '';
 		}
+		
+		if( isset( $_POST['otw_smb_'.$wp_item_type.'_validfor'] ) ){
+			$sbm_valid_for_values[ $wp_item_type ] = $_POST['otw_smb_'.$wp_item_type.'_validfor'];
+		}
+		//$wp_sbm_int_items[ $wp_item_type ][0] = otw_get_wp_items( $wp_item_type );
 	}
+
 	
 /** set class name of each item block
   *  @param array
@@ -91,92 +95,10 @@ function otw_sidebar_block_class( $item_type, $sidebar_data ){
 		}
 	}
 }
-/** set html ot each item row
-  *  @param string 
-  *  @param string 
-  *  @param string
-  *  @param array
-  *  @return void
-  */
-if (!function_exists( "otw_sidebar_item_attributes" )){
-	function otw_sidebar_item_attributes( $tag, $item_type, $item_id, $sidebar_data, $item_data ){
-		
-		$attributes = '';
-		
-		switch( $tag ){
-			case 'p':
-					$attributes_array = array();
-					if( isset( $_POST['otw_sml_action'] ) ){
-						if( isset( $_POST[ 'otw_sbi_'.$item_type ][ $item_id ] ) || isset( $_POST[ 'otw_sbi_'.$item_type ][ 'all' ] ) ){
-							$attributes_array['class'][] = 'sitem_selected';
-						}else{
-							$attributes_array['class'][] = 'sitem_notselected';
-						}
-					}else{
-						if( isset( $sidebar_data['sbm_validfor'][ $item_type ]['all'] ) ){
-							$attributes_array['class'][] = 'sitem_selected';
-						}elseif( isset( $sidebar_data['sbm_validfor'][ $item_type ][ $item_id ] ) ){
-							$attributes_array['class'][] = 'sitem_selected';
-						}else{
-							$attributes_array['class'][] = 'sitem_notselected';
-						}
-					}
-					if( isset( $attributes_array['class'] ) ){
-						$attributes .= ' class="'.implode( ' ', $attributes_array['class'] ).'"';
-					}
-				break;
-			case 'c':
-					if( isset( $_POST['otw_sml_action'] ) ){
-						if( isset( $_POST[ 'otw_sbi_'.$item_type ][ $item_id ] )  || isset( $_POST[ 'otw_sbi_'.$item_type ][ 'all' ] ) ){
-							$attributes .= ' checked="checked"';
-						}
-					}else{
-						if( isset( $sidebar_data['sbm_validfor'][ $item_type ]['all'] ) ){
-							$attributes .= ' checked="checked"';
-						}elseif( isset( $sidebar_data['sbm_validfor'][ $item_type ][ $item_id ] ) ){
-							$attributes .= ' checked="checked"';
-						}
-					}
-				break;
-			case 'ap':
-					if( isset( $_POST['otw_sml_action'] ) ){
-						if( isset( $_POST[ 'otw_sbi_'.$item_type ][ $item_id ] ) ){
-							$attributes .= ' class="all sitem_selected"';
-						}else{
-							$attributes .= ' class="all sitem_notselected"';
-						}
-					}else{
-						if( isset( $sidebar_data['sbm_validfor'][ $item_type ][ $item_id ] ) ){
-							$attributes .= ' class="all sitem_selected"';
-						}else{
-							$attributes .= ' class="all sitem_notselected"';
-						}
-					}
-				break;
-			case 'ac':
-					if( isset( $_POST['otw_sml_action'] ) ){
-						if( isset( $_POST[ 'otw_sbi_'.$item_type ][ $item_id ] ) ){
-							$attributes .= ' checked="checked"';
-						}
-					}else{
-						if( isset( $sidebar_data['sbm_validfor'][ $item_type ][ $item_id ] ) ){
-							$attributes .= ' checked="checked"';
-						}
-					}
-				break;
-			case 'l':
-					if( isset( $item_data->_sub_level ) && $item_data->_sub_level ){
-						$attributes .= ' style="margin-left: '.( $item_data->_sub_level * 20 ).'px"';
-					}
-				break;
-		}
-	echo $attributes;
-	}
-}
 ?>
 <div class="updated"><p>Check out the <a href="http://otwthemes.com/online-documentation-sidebar-manager-light/?utm_source=wp.org&utm_medium=admin&utm_content=docs&utm_campaign=sml">Online documentation</a> for this plugin<br /><br /> 
-Upgrade to the full version of <a href="http://otwthemes.com/product/sidebar-widget-manager-for-wordpress/?utm_source=wp.org&utm_medium=admin&utm_content=upgrade&utm_campaign=sml">Sidebar and Widget Manager</a> | <a href="http://otwthemes.com/demos/1ts/?item=Sidebar%20Widget%20Manager&utm_source=wp.org&utm_medium=admin&utm_content=upgrade&utm_campaign=sml">Demo site</a> | <a href="http://www.youtube.com/watch?v=WT9UK1eX4C8">Video overview</a><br /><br />
-Sidebar and Widget Manager has easy column <a href="http://otwthemes.com/widgetizing-pages-in-wordpress-has-never-been-easier/?utm_source=wp.org&utm_medium=admin&utm_content=upgrade&utm_campaign=sml">interface for Widgetizing Pages</a><br /><br />
+Upgrade to the full version of <a href="http://otwthemes.com/product/sidebar-widget-manager-for-wordpress/?utm_source=wp.org&utm_medium=admin&utm_content=upgrade&utm_campaign=sml">Sidebar and Widget Manager</a> | <a href="http://otwthemes.com/demos/1ts/?item=Sidebar%20Widget%20Manager&utm_source=wp.org&utm_medium=admin&utm_content=upgrade&utm_campaign=sml">Demo site</a><br /><br />
+<a href="http://otwthemes.com/widgetizing-pages-in-wordpress-can-be-even-easier-and-faster?utm_source=wp.org&utm_medium=admin&utm_content=upgrade&utm_campaign=sml">Create responsive layouts in minutes, drag & drop interface, feature rich.</a><br /><br />
 Follow on <a href="http://twitter.com/OTWthemes">Twitter</a> | <a href="http://www.facebook.com/pages/OTWthemes/250294028325665">Facebook</a> | <a href="http://www.youtube.com/OTWthemes">YouTube</a> | <a href="https://plus.google.com/117222060323479158835/about">Google+</a></p></div>
 <div class="wrap">
 	<div id="icon-edit" class="icon32"><br/></div>
@@ -198,33 +120,72 @@ Follow on <a href="http://twitter.com/OTWthemes">Twitter</a> | <a href="http://w
 
 			<div id="post-body">
 				<div id="post-body-content">
-					<div id="col-right">
+					<div id="col-right" style="width: 65%;" class="otw_sbm_<?php echo $otw_sidebar_id?>">
 						<?php if( is_array( $wp_sml_int_items ) && count( $wp_sml_int_items ) ){?>
 						
 							<?php foreach( $wp_sml_int_items as $wp_item_type => $wp_item_data ){?>
 							
+								
 								<div class="meta-box-sortables">
 									<div class="postbox">
-										<div title="<?php _e('Click to toggle')?>" class="handlediv sitem_toggle"><br></div>
+										<div title="<?php _e('Click to toggle', 'otw_sbm')?>" class="handlediv sitem_toggle"><br></div>
 										<h3 class="hndle sitem_header"><span><?php echo $wp_item_data[1]?></span></h3>
 										
-										<div class="inside sitems<?php otw_sidebar_block_class( $wp_item_type, $otw_sidebar_values )?>">
-											
-											<p<?php otw_sidebar_item_attributes( 'ap', $wp_item_type, 'all', $otw_sidebar_values, array() )?>>
-												<input type="checkbox" id="otw_sbi_<?php echo $wp_item_type?>_all" name="otw_sbi_<?php echo $wp_item_type?>[all]"<?php otw_sidebar_item_attributes( 'ac', $wp_item_type, 'all', $otw_sidebar_values, array() )?> value="all" /><label for="otw_sbi_<?php echo $wp_item_type?>_all"><a href="javascript:;"><?php echo $wp_item_data[2]?></a></label>
-											</p>
-											
+										<div class="inside sitems<?php otw_sidebar_block_class( $wp_item_type, $otw_sidebar_values, $sbm_valid_for_values[ $wp_item_type ] )?>" id="otw_sbm_type_<?php echo $wp_item_type?>">
+											<div class="otw_sidebar_item_filter" id="otw_type_<?php echo $wp_item_type ?>_filter" >
+												<div id="otw_type_<?php echo $wp_item_type ?>_search" class="otw_sidebar_filter_search">
+													<label for="otw_type_<?php echo $wp_item_type ?>_search_field"><?php _e( 'Search', 'otw_sbm' )?></label>
+													<input type="text" id="otw_type_<?php echo $wp_item_type ?>_search_field" class="otw_sbm_q_filter" value=""/>
+												</div>
+												<div id="otw_type_<?php echo $wp_item_type ?>_clear" class="otw_sidebar_filter_clear">
+													<a href="javascript:;" id="otw_type_<?php echo $wp_item_type ?>_clear"><?php _e( 'reset', 'otw_sbm' )?></a>
+												</div>
+												<div id="otw_type_<?php echo $wp_item_type ?>_order" class="otw_sidebar_filter_order">
+													<label for="otw_type_<?php echo $wp_item_type ?>_order_field"><?php _e( 'Order', 'otw_sbm' )?></label>
+													<select id="otw_type_<?php echo $wp_item_type ?>_order_field">
+														<?php $sort_options = otw_get_item_sort_options( $wp_item_type);?>
+														<?php if( count( $sort_options ) ){?>
+															<?php foreach( $sort_options as $s_key => $s_value ){ ?>
+																<option value="<?php echo $s_key?>"><?php echo $s_value?></option>
+															<?php }?>
+														<?php }?>
+													</select>
+												</div>
+												<div id="otw_type_<?php echo $wp_item_type ?>_show" class="otw_sidebar_filter_show">
+													<label for="otw_type_<?php echo $wp_item_type ?>_show_field"><?php _e( 'Show', 'otw_sbm' )?></label>
+													<select id="otw_type_<?php echo $wp_item_type ?>_show_field">
+														<option value="all"><?php _e( 'All', 'otw_sbm' )?></option>
+														<option value="all_selected"><?php _e( 'All Selected', 'otw_sbm' )?></option>
+														<option value="all_unselected"><?php _e( 'All Unselected', 'otw_sbm' )?></option>
+													</select>
+												</div>
+											</div>
+											<div class="otw_sbm_all_actions">
+												<div class="otw_sbm_all_links">
+													<a href="javascript:;" class="otw_sbm_select_all_items" rel="<?php echo $wp_item_type?>"><?php _e( 'Select All', 'otw_sbm' )?></a>
+													|
+													<a href="javascript:;" class="otw_sbm_unselect_all_items" rel="<?php echo $wp_item_type?>"><?php _e( 'Unselect All', 'otw_sbm' )?></a>
+												</div>
+												<div class="otw_sbm_selected_items">
+													<span class="otw_selected_items_number"></span>&nbsp;<span class="otw_seleted_items_plural"><?php _e( 'items are', 'otw_sbm' );?></span><span class="otw_selected_items_singular"><?php _e('item is', 'otw_sbm' )?></span>&nbsp;<?php _e( 'selected', 'otw_sbm' )?>
+												</div>
+											</div>
+											<div class="a_item">
 											<?php if( is_array( $wp_item_data[0] ) && count( $wp_item_data[0] ) ){?>
-											
-												<?php foreach( $wp_item_data[0] as $wpItem ) {?>
-													<p<?php otw_sidebar_item_attributes( 'p', $wp_item_type, otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ), $otw_sidebar_values, $wpItem )?>>
-														<input type="checkbox" id="otw_sbi_<?php echo $wp_item_type?>_<?php echo otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ) ?>"<?php otw_sidebar_item_attributes( 'c', $wp_item_type, otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ), $otw_sidebar_values, array() )?> value="<?php echo otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ) ?>" name="otw_sbi_<?php echo $wp_item_type?>[<?php echo otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ) ?>]" /><label for="otw_sbi_<?php echo $wp_item_type?>_<?php echo otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ) ?>"<?php otw_sidebar_item_attributes( 'l', $wp_item_type, otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ), $otw_sidebar_values, $wpItem )?> ><a href="javascript:;"><?php echo otw_sml_wp_item_attribute( $wp_item_type, 'TITLE', $wpItem ) ?></a></label>
+												<?php foreach( $wp_item_data[0] as $wpItem ){?>
+													<p<?php otw_sml_sidebar_item_attributes( 'p', $wp_item_type, otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ), $otw_sidebar_values, $wpItem )?>>
+														<input type="checkbox" id="otw_sbi_<?php echo $wp_item_type?>_sbi_<?php echo otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ) ?>"<?php otw_sml_sidebar_item_attributes( 'c', $wp_item_type, otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ), $otw_sidebar_values, array() )?> value="<?php echo otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ) ?>" name="otw_sbi_<?php echo $wp_item_type?>[<?php echo otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ) ?>]" /><label for="otw_sbi_<?php echo $wp_item_type?>_sbi_<?php echo otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ) ?>"<?php otw_sml_sidebar_item_attributes( 'l', $wp_item_type, otw_sml_wp_item_attribute( $wp_item_type, 'ID', $wpItem ), $otw_sidebar_values, $wpItem )?> ><a href="javascript:;"><?php echo otw_sml_wp_item_attribute( $wp_item_type, 'TITLE', $wpItem ) ?></a></label>
 													</p>	
 												<?php }?>
 											<?php }else{ echo '&nbsp;'; }?>
+											</div>
+											
+											<input type="hidden" id="otw_sbm_type_<?php echo $wp_item_type?>_validfor" class="otw_sbm_validfor" value="<?php echo $sbm_valid_for_values[ $wp_item_type ]?>" name="otw_smb_<?php echo $wp_item_type?>_validfor" />
 										</div>
 									</div>
 								</div>
+								
+
 								
 							<?php }?>
 							
