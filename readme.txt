@@ -26,7 +26,7 @@ Sidebars can be displayed based on User role too.
 
 Upgrade to the full version of [Sidebar and Widget Manager](http://otwthemes.com/product/sidebar-widget-manager-for-wordpress/?utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) |
 [Demo site](http://otwthemes.com/demos/1ts/?item=Sidebar%20Widget%20Manager&utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) | [Create responsive layouts in minutes, drag & drop interface, feature rich](http://otwthemes.com/widgetizing-pages-in-wordpress-can-be-even-easier-and-faster?utm_source=wp.org&utm_medium=page&utm_content=site&utm_campaign=sml)
- 
+  
 Examples:
 
 Lets say you would like to display a certain set of widgets on your blog page, different set of widgets on your portfolio, and different set on your contact page. All that on the spot where the primary sidebar of your theme is located. You can do that by creating 3 sidebars replacing the primary sidebar and set each custom sidebar to display on blog or portfolio or contacts.
