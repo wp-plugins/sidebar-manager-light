@@ -25,7 +25,7 @@ WMPL plugin support so you can display sidebars and widgets based on language.
 Sidebars can be displayed based on User role too.
 
 Upgrade to the full version of [Sidebar and Widget Manager](http://otwthemes.com/product/sidebar-widget-manager-for-wordpress/?utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) |
-[Demo site](http://otwthemes.com/demos/1ts/?item=Sidebar%20Widget%20Manager&utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) | [Create responsive layouts in minutes, drag & drop interface, feature rich](http://otwthemes.com/widgetizing-pages-in-wordpress-can-be-even-easier-and-faster?utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml)
+[Demo site](http://otwthemes.com/demos/1ts/?item=Sidebar%20Widget%20Manager&utm_source=wp.org&utm_medium=page&utm_content=upgrade&utm_campaign=sml) | [Create responsive layouts in minutes, drag & drop interface, feature rich](http://otwthemes.com/widgetizing-pages-in-wordpress-can-be-even-easier-and-faster?utm_source=wp.org&utm_medium=page&utm_content=site&utm_campaign=sml)
  
 Examples:
 
@@ -63,7 +63,7 @@ Please refer to [online documentation page](http://otwthemes.com/online-document
 
 == Changelog ==
 
-Updating to versiion 1.3 or higher requires deactivation of the old version first! More info [here](http://otwthemes.com/updating-widgetize-pages-light-to-1-5-version-sidebar-manager-light-to-1-3-widget-manager-light-to-1-3/)  
+Updating to versiion 1.3 or higher requires deactivation of the old version first! More info [here](http://otwthemes.com/updating-widgetize-pages-light-to-1-5-version-sidebar-manager-light-to-1-3-widget-manager-light-to-1-3/?utm_source=wp.org&utm_medium=page&utm_content=site&utm_campaign=sml)  
 
 = 1.6 =
 
