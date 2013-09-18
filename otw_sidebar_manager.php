@@ -5,7 +5,7 @@ Plugin Name: Sidebar Manager Light
 Plugin URI: http://otwthemes.com/?utm_source=wp.org&utm_medium=admin&utm_content=site&utm_campaign=sml
 Description:  Create custom sidebars (widget areas) and replace any existing sidebar so you can display relevant content on different pages.
 Author: OTWthemes.com
-Version: 1.6
+Version: 1.7
 Author URI: http://otwthemes.com/?utm_source=wp.org&utm_medium=admin&utm_content=site&utm_campaign=sml
 */
 $wp_sml_int_items = array(
