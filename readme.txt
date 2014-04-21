@@ -3,7 +3,7 @@ Contributors: OTWthemes
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQH6CMTR42KS2
 Tags: replace sidebar, replace widget area, custom sidebar, custom widget area widgets, sidebar, widget area, custom layout, relevant content, dynamic sidebars
 Requires at least: 3.0
-Tested up to: 3.7.1
+Tested up to: 3.9
 Stable tag: 1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
