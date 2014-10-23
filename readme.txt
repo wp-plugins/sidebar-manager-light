@@ -3,7 +3,7 @@ Contributors: OTWthemes
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQH6CMTR42KS2
 Tags: replace sidebar, replace widget area, custom sidebar, custom widget area widgets, sidebar, widget area, custom layout, relevant content, dynamic sidebars
 Requires at least: 3.0
-Tested up to: 3.9
+Tested up to: 4.0
 Stable tag: 1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -18,7 +18,7 @@ You can now replace an existing sidebar (widget area) with a custom sidebar for 
 
 Once created all custom sidebars will be available in Appearance -> Widgets. You can drop any number of widgets in any of your custom sidebars. They work exacly the same way as the default once.
 
-Add as many sidebars (widget areas) as you need. Creating sidebars (widget areas) is unlimited. 
+Add as many sidebars (widget areas) as you need. Creating sidebars(widget areas) is unlimited. 
 
 WMPL plugin support so you can display sidebars and widgets based on language.
 
@@ -31,7 +31,7 @@ Examples:
 
 Lets say you would like to display a certain set of widgets on your blog page, different set of widgets on your portfolio, and different set on your contact page. All that on the spot where the primary sidebar of your theme is located. You can do that by creating 3 sidebars replacing the primary sidebar and set each custom sidebar to display on blog or portfolio or contacts.
 
-If you have an advanced theme that has some extra widget areas you can replace those as well. Practically any sidebar (widget area) can be replaced.
+If you have an advanced theme that has some extra widget areas you can replace those as well. Practically any sidebar(widget area) can be replaced.
 
 This is very easy and fun to do and requires no coding knowledge at all.
 
