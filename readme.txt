@@ -3,8 +3,8 @@ Contributors: OTWthemes
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQH6CMTR42KS2
 Tags: replace sidebar, replace widget area, custom sidebar, custom widget area widgets, sidebar, widget area, custom layout, relevant content, dynamic sidebars
 Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 1.8
+Tested up to: 4.2
+Stable tag: 1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -64,6 +64,10 @@ Please refer to [online documentation page](http://otwthemes.com/online-document
 == Changelog ==
 
 Updating to versiion 1.3 or higher requires deactivation of the old version first! More info [here](http://otwthemes.com/updating-widgetize-pages-light-to-1-5-version-sidebar-manager-light-to-1-3-widget-manager-light-to-1-3/?utm_source=wp.org&utm_medium=page&utm_content=site&utm_campaign=sml)  
+
+= 1.9 =
+
+* Fixed: Visibility tabs posts pagination
 
 = 1.8 =
 
