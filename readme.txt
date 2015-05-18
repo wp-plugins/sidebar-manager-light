@@ -12,8 +12,6 @@ Create custom sidebars (widget areas) and replace any existing sidebar so you ca
 
 == Description ==
 
-Updating to version 1.3 or higher - See the Change log tab.
-
 You can now replace an existing sidebar (widget area) with a custom sidebar for one or group of pages. The content of the new sidebar will be displayed on the exact same spot as the one you select to replace only for those pages you selected.
 
 Once created all custom sidebars will be available in Appearance -> Widgets. You can drop any number of widgets in any of your custom sidebars. They work exacly the same way as the default once.
